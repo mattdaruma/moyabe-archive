@@ -1,0 +1,29 @@
+<mat-sidenav-container style="min-height:100%" (backdropClick)="close()">
+  <mat-sidenav #sidenav (keydown.escape)="close()" disableClose>
+    <p class="side-button"><button color="warn" mat-flat-button (click)="close()">Close Menu</button></p>
+    <p class="side-button"><button color="primary" mat-flat-button (click)="navigate('Upload')">Upload Data</button></p>
+    <p class="side-button"><button color="primary" mat-flat-button (click)="navigate('Configure')" [disabled]="NoData">Make Bot</button></p>
+    <p class="side-button"><button color="primary" mat-flat-button (click)="navigate('Train')" [disabled]="NoData || NoBot">Train Data</button></p>
+    <p class="side-button"><button color="primary" mat-flat-button (click)="navigate('Predict')" [disabled]="NoData || NoBot">Predict</button></p>
+    <p class="side-button"><button color="accent" mat-flat-button [disabled]="NoData">Export Bot</button></p>
+    <p class="side-button"><button color="accent" mat-flat-button [disabled]="NoData">Export Data</button></p>
+    <p class="side-button"><button color="accent" mat-flat-button [disabled]="NoData">Export Training</button></p>
+    <p class="side-button"><button color="warn" mat-flat-button (click)="deleteBot()">Delete Bot</button></p>
+    <p class="side-button"><button color="warn" mat-flat-button (click)="deleteData()">Delete Data</button></p>
+    <p class="side-button"><button color="warn" mat-flat-button (click)="deleteTrain()">Delete Training</button></p>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button (click)="sidenav.open()" mat-icon-button >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Predictonator</span>
+    </mat-toolbar>
+    <app-upload-source *ngIf="CurrentPage == 'Upload'"></app-upload-source>
+    <app-configure-bot *ngIf="CurrentPage == 'Configure'"></app-configure-bot>
+    <app-train-data *ngIf="CurrentPage == 'Train'"></app-train-data>
+    <app-predict *ngIf="CurrentPage == 'Predict'"></app-predict>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

@@ -1,0 +1,9 @@
+node_modules
+package-lock.json
+screenshot.png
+creds.json
+results.html
+captures/*
+user-data/*
+output/*
+csvs

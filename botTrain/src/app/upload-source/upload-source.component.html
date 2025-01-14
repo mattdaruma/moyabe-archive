@@ -1,0 +1,9 @@
+<div class="uploadcontainer">
+  <input type="file" accept=".csv" class="upload" (change)="changeListener($event.target.files)">
+  <div class="datasummary">
+    <p><strong>Rows:</strong> {{CurrentData.length}}</p>
+    <p><strong>Headers:</strong><span *ngFor="let header of CurrentHeaders; let i=index">
+      {{i > 0 ? ',' : ''}} {{header}}
+    </span></p>
+  </div>
+</div>

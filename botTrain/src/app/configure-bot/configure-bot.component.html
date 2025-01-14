@@ -1,0 +1,64 @@
+<div class="bot-form-container">
+  <form [formGroup]="botForm" class="bot-form">
+    <button *ngIf="!saveTriggered" mat-button color="primary" disabled="disabled">Saved</button>
+    <button *ngIf="saveTriggered" (click)="saveBot()" mat-button color="primary"><mat-icon>save</mat-icon>Save</button>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">
+      <mat-hint>The name of your bot.</mat-hint>
+    </mat-form-field>
+    <br>
+    <br>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="desc"></textarea>
+      <mat-hint>A brief description of the bot.</mat-hint>
+    </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field>
+    <mat-label>Prediction</mat-label>
+    <mat-hint>The column you'd like to predict.</mat-hint>
+    <mat-autocomplete autoActiveFirstOption #predictionAuto="matAutocomplete">
+      <mat-option *ngFor="let columnName of filteredColumns | async" [value]="columnName">
+        {{columnName}}
+      </mat-option>
+    </mat-autocomplete>
+    <input type="text"
+    matInput
+    formControlName="output"
+    (keydown.tab)="populateOutcome()"
+    (keydown.enter)="populateOutcome()"
+    [matAutocomplete]="predictionAuto" />
+  </mat-form-field>
+</form>
+<br>
+<div>
+  <p class="mat-title">Trainers ({{Trainers.length}})</p>
+</div>
+<form [formGroup]="trainerForm" layout="row" class="training-form">
+  <mat-form-field flex>
+    <mat-label>Column Name</mat-label>
+    <input type="text"
+    matInput
+    formControlName="addColumn"
+    (keydown.tab)="populateOutcome()"
+    (keydown.enter)="populateOutcome()"
+    [matAutocomplete]="trainerAuto"/>
+    <mat-autocomplete autoActiveFirstOption #trainerAuto="matAutocomplete">
+      <mat-option *ngFor="let columnName of filteredTrainColumns | async" [value]="columnName">
+        {{columnName}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-form-field flex>
+    <mat-label>Weight</mat-label>
+    <input formControlName="addWeight" matInput type="number" />
+  </mat-form-field>
+  <button (click)="addTrainer()" mat-icon-button color="primary" flex><mat-icon>add</mat-icon></button>
+</form>
+<div *ngFor="let trainer of Trainers">
+  <button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+  <span class="mat-subhead">{{trainer.column}} ({{trainer.weight}}) </span>
+</div>
+</div>

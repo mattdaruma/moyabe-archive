@@ -1,0 +1,7 @@
+{
+    "jwtHeader": "game-forms-jwt",
+    "jwtSecret": "itsasecretokay?",
+    "connectionStrings": {
+        "gameFormsDb": "postgres://postgres:Pwimmwamm!@localhost/gameforms"
+    }
+}    

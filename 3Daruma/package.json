@@ -1,0 +1,27 @@
+{
+  "name": "3daruma",
+  "version": "1.0.0",
+  "description": "3D rendering of daruma avatars",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattdaruma/3Daruma.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mattdaruma/3Daruma/issues"
+  },
+  "homepage": "https://github.com/mattdaruma/3Daruma#readme",
+  "dependencies": {
+    "canvas": "^2.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.7",
+    "typescript": "^4.4.4"
+  }
+}
