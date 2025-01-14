@@ -1,0 +1,3 @@
+<form (ngSubmit)="OnSubmit()" *ngIf="Widget | async as widget" [formGroup]="widget.Form!" [style]="widget?.Data?.Style">
+    <app-dad-widget *ngFor="let child of widget?.Children" [Widget]="child"></app-dad-widget>
+</form>

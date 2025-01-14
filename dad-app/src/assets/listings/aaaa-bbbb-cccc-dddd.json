@@ -1,0 +1,56 @@
+{
+    "Id": "aaaa-bbbb-cccc-dddd",
+    "Images": [
+        {
+            "URL": "/terrah-holly-pmhdkgRCbtE-unsplash.jpg",
+            "Title": "House",
+            "Description": "A picture of the house."
+        }
+    ],
+    "ForSale": true,
+    "Price": 323434.02,
+    "Longitude": 23.45,
+    "Lattitude": 34.56,
+    "Street": "123 blahblah lane",
+    "City": "Hamingham",
+    "State": "AL",
+    "Zip": "12345",
+    "LotSize": 32,
+    "PropertySize": 2,
+    "SizeUnits": "sqft",
+    "Bed": 3,
+    "Bath": 6,
+    "YearBuilt": 1995,
+    "GarageSize": 2,
+    "Overview": "Lorem ipsum blah blah filler words...",
+    "PropertyFeatures": [
+        {
+            "Category": "Bathrooms",
+            "Features": [{
+                "Feature": "Full Baths",
+                "Value": 2
+            }]
+        }
+    ],
+    "Valuations": [
+        {
+            "Date": 123456789,
+            "Price": 123321,
+            "Source": "Zillow",
+            "Event": "Sold"
+        }
+    ],
+    "TaxHistory": [
+        {
+            "Year": 2022,
+            "Taxes": 3234.99,
+            "Land": null,
+            "Additions": [],
+            "Price": 32323
+        }
+    ],
+    "EnvironmentalRisk": {
+        "Flood": "Low",
+        "Fire": "High"
+    }
+}

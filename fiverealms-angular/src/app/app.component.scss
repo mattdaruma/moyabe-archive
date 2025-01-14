@@ -1,0 +1,22 @@
+.command-bar{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background:  #fff;
+    box-shadow: 0 -5px 5px #333;
+    border-radius: 5px 5px 0 0;
+}
+.command-bar mat-form-field {
+    width: 100%;
+}
+.command-block{
+    display:block;
+    padding:5px;
+}
+.feed {
+    padding-bottom: 100vh;
+}
+.message-text{
+    white-space: pre-line;
+}

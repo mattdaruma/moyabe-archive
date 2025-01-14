@@ -1,0 +1,17 @@
+mat-card{
+    max-width: 25em;
+    height: fit-content;
+}
+img{
+    max-width: 25em;
+    max-height: 25em;
+}
+.card-feed{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+mat-card-actions{
+    padding-top:0;
+}

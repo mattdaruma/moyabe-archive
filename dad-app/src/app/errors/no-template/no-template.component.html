@@ -1,0 +1,11 @@
+<div id="no-template-container" class="no-template-container">
+    <h2>Whoops, Bad Config</h2>
+    <p *ngIf="(route.data | async) as data">
+        {{data['Template'] | titlecase}} is not a template provided by DAD-APP.<br />
+        {{(route.url | async)?.join('/') | titlecase}} cannot be loaded.
+    </p>
+    <p>
+        <button [routerLink]="['/']" mat-button color="primary"><mat-icon>house</mat-icon>Go Home?</button>
+    </p>
+    <div id="no-template-image" class="no-template-image"></div>
+</div>

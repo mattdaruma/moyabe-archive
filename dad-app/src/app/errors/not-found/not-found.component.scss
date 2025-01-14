@@ -1,0 +1,15 @@
+#not-found-image{
+    width: 100%;
+    height: 66vh;
+    background-size: cover;
+    background-position: center;
+    background-image: url("/assets/images/pavel-l-PZAxzN5DPkc-unsplash.jpg");
+    box-shadow: inset 0 0 3em 5em var(--theme-fuzz);
+}
+#not-found-container{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}

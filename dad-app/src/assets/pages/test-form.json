@@ -1,0 +1,59 @@
+{
+    "Id": "main-container",
+    "Type": "container",
+    "Style": {
+        "justifyContent": "center",
+        "display": "flex",
+        "flexDirection": "row",
+        "flexWrap": "wrap"
+    },
+    "Children": [
+        {
+            "Id": "main-container-item",
+            "Type": "container-item",
+            "Style": {
+                "flexBasis": "100%",
+                "padding": "1em"
+            },
+            "Children": [
+                {
+                    "Id": "main-table",
+                    "Type": "form",
+                    "Form": ["my-first-field"],
+                    "Children": [
+                        {
+                            "Id": "my-first-field",
+                            "Type": "field-text",
+                            "Key": "firest-field",
+                            "Value": "SO FIRE",
+                            "Disabled": false,
+                            "Validators": [
+                                {
+                                    "Type": "required"
+                                },
+                                {
+                                    "Type": "minLength",
+                                    "Min": 5
+                                },
+                                {
+                                    "Type": "maxLength",
+                                    "Max": 10
+                                }
+                            ],
+                            "Options": [
+                                {
+                                    "Display": "firey",
+                                    "Value": "firay"
+                                },
+                                {
+                                    "Display": "icey",
+                                    "Value": "icay"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

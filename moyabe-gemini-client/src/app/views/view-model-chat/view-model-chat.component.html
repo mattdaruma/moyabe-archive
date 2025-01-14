@@ -1,0 +1,256 @@
+<nav class="subnav">
+    <app-shared-loading class="full-width padded nav" *ngIf="ChatForm.disabled"
+        [Message]="'Loading AI response...'"></app-shared-loading>
+    <div class="nav" *ngIf="!ChatForm.disabled">
+        <button class="nav-item btn btn-link" [disabled]="ChatForm.disabled" (click)="addMessage()">Add Message</button>
+        <button class="nav-item btn btn-link" [disabled]="ChatForm.disabled" (click)="systemModal = true">System
+            Instructions</button>
+        <button class="nav-item btn btn-link" [disabled]="ChatForm.disabled" (click)="safetyModal = true">Safety
+            Settings</button>
+        <button class="nav-item btn btn-link" [disabled]="ChatForm.disabled"
+            (click)="generationConfigModal = true">Generation Config</button>
+        <button class="nav-item btn btn-link" [disabled]="ChatForm.disabled || true">Link Cache</button>
+        <button class="nav-item btn btn-link" [disabled]="ChatForm.disabled || true">Tools</button>
+        <button class="nav-item btn btn-link" [disabled]="ChatForm.disabled || true">Tools Config</button>
+    </div>
+</nav>
+<div class="padded">
+    <form class="clr-form" (keydown.enter)="$event.preventDefault()" [formGroup]="ChatForm">
+        <div formGroupName="Messages">
+            <clr-textarea-container *ngFor="let control of MessagesField?.controls ?? []; let i = index">
+                <textarea class="full-width" (keydown.control.enter)="sendPrompt()" clrTextarea [formControlName]="i"
+                    placeholder="Enter message to AI.">
+                </textarea>
+            </clr-textarea-container>
+        </div>
+        <clr-modal clrModalSize="xl" [(clrModalOpen)]="systemModal" [clrModalStaticBackdrop]="false">
+            <div class="modal-title">System Instructions</div>
+            <div class="modal-body">
+                <button type="button" (click)="addInstruction()" class="btn">
+                    <cds-icon shape="add-text"></cds-icon> Add System Instruction
+                </button>
+                <div formGroupName="SystemInstructions" *ngIf="(SystemInstructionsField?.controls?.length ?? 0) > 0">
+                    <clr-textarea-container
+                        *ngFor="let message of (SystemInstructionsField?.controls ?? []); let i = index">
+                        <textarea class="full-width" clrTextarea [formControlName]="i"
+                            placeholder="Enter an instruction for the system.">
+                    </textarea>
+                    </clr-textarea-container>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="systemModal = false">Ok</button>
+            </div>
+        </clr-modal>
+        <clr-modal clrModalSize="sm" [(clrModalOpen)]="safetyModal" [clrModalStaticBackdrop]="false">
+            <h3 class="modal-title">Edit Safety Settings</h3>
+            <div class="modal-body" formGroupName="SafetySettings">
+                <clr-select-container>
+                    <label>Harassment</label>
+                    <select clrSelect clrSelect formControlName="Harassment">
+                        <option *ngFor="let option of safetySettings" [value]="option">{{option}}</option>
+                    </select>
+                </clr-select-container>
+                <clr-select-container>
+                    <label>Hate Speech</label>
+                    <select clrSelect formControlName="HateSpeech">
+                        <option *ngFor="let option of safetySettings" [value]="option">{{option}}</option>
+                    </select>
+                </clr-select-container>
+                <clr-select-container>
+                    <label>Sexually Explicit</label>
+                    <select clrSelect formControlName="SexuallyExplicit">
+                        <option *ngFor="let option of safetySettings" [value]="option">{{option}}</option>
+                    </select>
+                </clr-select-container>
+                <clr-select-container>
+                    <label>Dangerous Content</label>
+                    <select clrSelect formControlName="DangerousContent">
+                        <option *ngFor="let option of safetySettings" [value]="option">{{option}}</option>
+                    </select>
+                </clr-select-container>
+                <clr-select-container>
+                    <label>Civic Integrity</label>
+                    <select clrSelect formControlName="CivicIntegrity">
+                        <option *ngFor="let option of safetySettings" [value]="option">{{option}}</option>
+                    </select>
+                </clr-select-container>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="safetyModal = false">OK</button>
+            </div>
+        </clr-modal>
+        <clr-modal clrModalSize="xl" [(clrModalOpen)]="generationConfigModal" [clrModalStaticBackdrop]="false">
+            <h3 class="modal-title">Edit Generation Config</h3>
+            <div class="modal-body config-modal" formGroupName="generationConfigForm">
+                <div class="clr-row">
+                    <!-- reponse schema still missing-->
+                    <span class="clr-col-12 clr-col-sm-6 clr-col-md-6 clr-col-lg-4 clr-col-xl-3">
+                        <clr-input-container>
+                            <label for="responseSchema" class="form-label">Response Schema (TODO: Complex Object)</label>
+                            <input clrInput type="text" id="responseSchema" formControlName="responseSchema"
+                                class="form-control">
+                        </clr-input-container>
+                    </span>
+                    <span class="clr-col-12 clr-col-sm-6 clr-col-md-6 clr-col-lg-4 clr-col-xl-3">
+                        <clr-input-container>
+                            <label for="stopSequences" class="form-label">Stop Sequences (TODO: Array of strings)</label>
+                            <input clrInput type="text" id="stopSequences" formControlName="stopSequences"
+                                class="form-control">
+                            <clr-control-helper>
+                                Optional. The set of character sequences (up to 5) that will stop output generation. If specified, the API will stop at the first appearance of a stop_sequence. The stop sequence will not be included as part of the response.
+                            </clr-control-helper>
+                        </clr-input-container>
+                    </span>
+                    <span class="clr-col-12 clr-col-sm-6 clr-col-md-6 clr-col-lg-4 clr-col-xl-3">
+                        <clr-select-container>
+                            <label for="responseMimeType" class="form-label">Response MIME Type</label>
+                            <select clrSelect id="responseMimeType" formControlName="responseMimeType"
+                                class="form-select">
+                                <option value="text/plain">text/plain</option>
+                                <option value="application/json">application/json</option>
+                            </select>
+                            <div *ngIf="(GetGenControl('responseMimeType')?.invalid) && (GetGenControl('responseMimeType')?.touched)"
+                                class="invalid-feedback">
+                                Please select a valid MIME type.
+                            </div>
+                        </clr-select-container>
+                    </span>
+                    <span class="clr-col-12 clr-col-sm-6 clr-col-md-6 clr-col-lg-4 clr-col-xl-3">
+                        <clr-input-container>
+                            <label for="candidateCount" class="form-label">Candidate Count</label>
+                            <input clrInput type="number" id="candidateCount" formControlName="candidateCount"
+                                class="form-control"
+                                [ngClass]="{ 'is-invalid': (GetGenControl('candidateCount')?.invalid ?? true) && (GetGenControl('candidateCount')?.touched)}">
+                            <div *ngIf="GetGenControl('candidateCount')?.invalid && GetGenControl('candidateCount.touched')"
+                                class="invalid-feedback">
+                                Please enter a valid candidate count (minimum 1).
+                            </div>
+                        </clr-input-container>
+                    </span>
+                    <span class="clr-col-12 clr-col-sm-6 clr-col-md-6 clr-col-lg-4 clr-col-xl-3">
+                        <clr-input-container>
+                            <label for="maxOutputTokens" class="form-label">Max Output Tokens</label>
+                            <input clrInput type="number" id="maxOutputTokens" formControlName="maxOutputTokens"
+                                class="form-control"
+                                [ngClass]="{ 'is-invalid': GetGenControl('maxOutputTokens')?.invalid && GetGenControl('maxOutputTokens')?.touched }">
+                            <div *ngIf="GetGenControl('maxOutputTokens')?.invalid && GetGenControl('maxOutputTokens')?.touched"
+                                class="invalid-feedback">
+                                Please enter a valid maximum number of output tokens (minimum 1).
+                            </div>
+                        </clr-input-container>
+                    </span>
+                    <span class="clr-col-12 clr-col-sm-6 clr-col-md-6 clr-col-lg-4 clr-col-xl-3">
+                        <clr-input-container>
+                            <label for="temperature" class="form-label">Temperature</label>
+                            <input clrInput type="number" id="temperature" formControlName="temperature"
+                                class="form-control"
+                                [ngClass]="{ 'is-invalid': GetGenControl('temperature')?.invalid && GetGenControl('temperature')?.touched }">
+                            <div *ngIf="GetGenControl('temperature')?.invalid && GetGenControl('temperature')?.touched"
+                                class="invalid-feedback">
+                                Please enter a valid GetGenControl('temperature')? (between 0 and 1).
+                            </div>
+                        </clr-input-container>
+                    </span>
+                    <span class="clr-col-12 clr-col-sm-6 clr-col-md-6 clr-col-lg-4 clr-col-xl-3">
+                        <clr-input-container>
+                            <label for="topP" class="form-label">Top P</label>
+                            <input clrInput type="number" id="topP" formControlName="topP" class="form-control"
+                                [ngClass]="{ 'is-invalid': GetGenControl('topP')?.invalid && GetGenControl('topP')?.touched }">
+                            <div *ngIf="GetGenControl('topP')?.invalid && GetGenControl('topP')?.touched"
+                                class="invalid-feedback">
+                                Please enter a valid Top P value (between 0 and 1).
+                            </div>
+                        </clr-input-container>
+                    </span>
+                    <span class="clr-col-12 clr-col-sm-6 clr-col-md-6 clr-col-lg-4 clr-col-xl-3">
+                        <clr-input-container>
+                            <label for="topK" class="form-label">Top K</label>
+                            <input clrInput type="number" id="topK" formControlName="topK" class="form-control"
+                                [ngClass]="{ 'is-invalid': GetGenControl('topK')?.invalid && GetGenControl('topK')?.touched }">
+                            <div *ngIf="GetGenControl('topK')?.invalid && GetGenControl('topK')?.touched"
+                                class="invalid-feedback">
+                                Please enter a valid Top K value (minimum 1).
+                            </div>
+                        </clr-input-container>
+                    </span>
+                    <span class="clr-col-12 clr-col-sm-6 clr-col-md-6 clr-col-lg-4 clr-col-xl-3">
+                        <clr-input-container>
+                            <label for="presencePenalty" class="form-label">Presence Penalty</label>
+                            <input clrInput type="number" id="presencePenalty" formControlName="presencePenalty"
+                                class="form-control"
+                                [ngClass]="{ 'is-invalid': GetGenControl('presencePenalty')?.invalid && GetGenControl('presencePenalty')?.touched }">
+                            <div *ngIf="GetGenControl('presencePenalty')?.invalid && GetGenControl('presencePenalty')?.touched"
+                                class="invalid-feedback">
+                                Please enter a valid presence penalty (between -2 and 2).
+                            </div>
+                        </clr-input-container>
+                    </span>
+                    <span class="clr-col-12 clr-col-sm-6 clr-col-md-6 clr-col-lg-4 clr-col-xl-3">
+                        <clr-input-container>
+                            <label for="frequencyPenalty" class="form-label">Frequency Penalty</label>
+                            <input clrInput type="number" id="frequencyPenalty" formControlName="frequencyPenalty"
+                                class="form-control"
+                                [ngClass]="{ 'is-invalid': GetGenControl('frequencyPenalty')?.invalid && GetGenControl('frequencyPenalty')?.touched }">
+                            <div *ngIf="GetGenControl('frequencyPenalty')?.invalid && GetGenControl('frequencyPenalty')?.touched"
+                                class="invalid-feedback">
+                                Please enter a valid frequency penalty (between -2 and 2).
+                            </div>
+                        </clr-input-container>
+                    </span>
+                    <span class="clr-col-12 clr-col-sm-6 clr-col-md-6 clr-col-lg-4 clr-col-xl-3">
+                        <clr-checkbox-container>
+                            <clr-checkbox-wrapper>
+                                <label for="responseLogprobs" class="form-label">Response Logprobs</label>
+                                <input clrCheckbox type="checkbox" id="responseLogprobs"
+                                    formControlName="responseLogprobs" class="form-check-input">
+                            </clr-checkbox-wrapper>
+                        </clr-checkbox-container>
+                    </span>
+                    <span class="clr-col-12 clr-col-sm-6 clr-col-md-6 clr-col-lg-4 clr-col-xl-3">
+                        <clr-input-container>
+                            <label for="logprobs" class="form-label">Logprobs</label>
+                            <input clrInput type="number" id="logprobs" formControlName="logprobs" class="form-control"
+                                [ngClass]="{ 'is-invalid': GetGenControl('logprobs')?.invalid && GetGenControl('logprobs')?.touched }">
+                            <div *ngIf="GetGenControl('logprobs')?.invalid && GetGenControl('logprobs')?.touched"
+                                class="invalid-feedback">
+                                Please enter a valid logprobs value (minimum 1).
+                            </div>
+                        </clr-input-container>
+                    </span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="safetyModal = false">OK</button>
+            </div>
+        </clr-modal>
+    </form>
+    <button [disabled]="ChatForm.disabled" (click)="sendPrompt()" type="button" class="btn">
+        <cds-icon shape="add-text"></cds-icon> Send Message
+    </button>
+</div>
+<div class="padded">
+    <div class="card" *ngFor="let chat of Interactions">
+        <div class="card-block">
+            <div *ngFor="let candidate of chat.response?.candidates">
+                <div class="card-text chat-message chat-message-ai whitespace-render"
+                    *ngFor="let part of candidate.content?.parts ?? []">
+                    <markdown clipboard>
+                        {{part.text}}
+                    </markdown>
+                </div>
+            </div>
+        </div>
+        <div class="card-block" *ngIf="chat.prompt?.contents">
+            <div *ngIf="chat?.prompt?.contents">
+                <div class="card-text chat-message chat-message-user whitespace-render"
+                    *ngFor="let part of ((chat.prompt?.contents?.length ?? 0) === 1 ? chat.prompt!.contents![0].parts : ((chat.prompt?.contents?.length ?? 0) > 1 ? chat.prompt!.contents![1] : {parts: []}).parts) ?? []">
+                    <span cds-text="body">{{part.text}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer" style="display: flex; align-content:end;">
+            <span cds-text="caption" class="message-card-footer-text">{{chat.date | date:'MM-dd HH:mm a'}}</span>
+        </div>
+    </div>
+</div>

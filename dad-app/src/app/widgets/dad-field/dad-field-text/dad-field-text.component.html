@@ -1,0 +1,17 @@
+<mat-form-field *ngIf="Widget | async as widget" [style]="widget.Data?.Style">
+    <mat-label *ngIf="widget?.Data?.Title">{{widget?.Data?.Title}}</mat-label>
+    <input *ngIf="widget.Data?.Key" [attr.list]="widget?.Data?.Key+'-list'" [formControl]="widget?.Field!" matInput type="text">
+    <datalist [id]="widget?.Data?.Key+'-list'" *ngIf="widget?.Data?.Options as dataList">
+        <option *ngFor="let data of dataList" [value]="data.Value === undefined ? data.Display : data.Value">
+            {{data.Display === undefined ? data.Value : data.Display}}</option>
+    </datalist>
+    <mat-error *ngFor="let e of Object.keys(widget.Field?.errors ?? {})">
+        <span *ngIf="e === 'required'">Required</span>
+        <span *ngIf="e === 'minlength'">Minimum Length: {{widget.Field!.errors![e]!.requiredLength}} ({{widget.Field!.errors![e]!.actualLength}})</span>
+        <span *ngIf="e === 'maxlength'">Maximum Length: {{widget.Field!.errors![e]!.requiredLength}} ({{widget.Field!.errors![e]!.actualLength}})</span>
+    </mat-error>
+    <mat-error>
+        {{JSON.stringify(widget.Field?.errors ?? {}, null, 4)}}
+    </mat-error>
+</mat-form-field> 
+<button type="submit">submit form</button>

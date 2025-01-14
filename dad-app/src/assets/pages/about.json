@@ -1,0 +1,82 @@
+[
+    {
+        "Type": "container",
+        "Style": {
+            "justifyContent": "center",
+            "display": "flex",
+            "flexDirection": "row",
+            "flexWrap": "wrap"
+        },
+        "Children": [
+            {
+                "Type": "container-item",
+                "Style": {
+                    "flexBasis": "100%"
+                },
+                "Children": [{
+                    "Type": "banner",
+                    "Image": {
+                        "Type": "dad-image",
+                        "URL": "/assets/images/terrah-holly-pmhdkgRCbtE-unsplash.jpg"
+                    }
+                }]
+            },
+            {
+                "Type": "container-item",
+                "Style": {
+                    "padding": "1em"
+                },
+                "Children": [{
+                    "Type": "card",
+                    "Style": {
+                        "maxWidth": "1000px"
+                    },
+                    "Children": [
+                        {
+                            "Type": "card-header",
+                            "Avatar": {
+                                "URL": "/assets/images/agent.jpg",
+                                "Title": "Jeff Morris"
+                            },
+                            "Title": "Jeff Morris",
+                            "Subtitle": "Personal Insight - Sherman Oaks Subdivision"
+                        },
+                        {
+                            "Type": "card-content",
+                            "Children": [{
+                                "Type": "text",
+                                "Text": "In 1996 I started a new job with the Trussville Police Department. I had worked since 1987 for Birmingham and Leeds police departments. When I first began patrolling in Trussville, I fell in love with the Sherman Oaks subdivision. It has a beautiful entrance, it's centrally located and has direct access to the Sports Complex with parks and trails. The houses are all beautiful and the streets are quiet. I had the privilege to sell one recently and the new owners love the neighborhood as much as I do!"
+                            }]
+                        },
+                        {
+                            "Type": "card-actions",
+                            "Style": {
+                                "justifyContent": "right"
+                            },
+                            "Children": [
+                                {
+                                    "Type": "button",
+                                    "Icon": "house",
+                                    "Display": "Home",
+                                    "RouterLink": "/"
+                                },
+                                {
+                                    "Type": "button",
+                                    "Icon": "diversity_3",
+                                    "Display": "Friends",
+                                    "RouterLink": "/friends"
+                                },
+                                {
+                                    "Type": "button",
+                                    "Icon": "mail",
+                                    "Display": "Contact",
+                                    "RouterLink": "/contact"
+                                }
+                            ]
+                        }
+                    ]
+                }]
+            }
+        ]
+    }
+]

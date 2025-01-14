@@ -1,0 +1,13 @@
+<mat-progress-bar [color]="ReadyCount >= WidgetCount ? 'primary' : 'accent'" [mode]="'buffer'"
+    [value]="(ReadyCount / WidgetCount)*100" [bufferValue]="(ReadyCount / WidgetCount)*100"></mat-progress-bar>
+<div *ngIf="Widget | async as widget" class="dad-page-container dad-fade" [ngClass]="(widget.Ready | async) ? 'dad-fade-show' : ''">
+    <h1 *ngIf="WidgetCount === 0">Not a valid widget.</h1>
+    <div class="mat-caption">▼ {{LastDownload | date: 'MMM d hh:mm aa'}}</div>
+    <app-dad-widget [Widget]="widget"></app-dad-widget>
+</div>
+<div *ngIf="Error" class="page-error-container">
+    <h1>Error Fetching Page Data</h1>
+    <p class="page-error">
+        {{Error}}
+    </p>
+</div>

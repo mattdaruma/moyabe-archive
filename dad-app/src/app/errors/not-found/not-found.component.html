@@ -1,0 +1,10 @@
+<div id="not-found-container" class="not-found-image-container">
+    <h2>Route Not Found</h2>
+    <p>
+        {{(route.url | async)?.join('/') | titlecase}} is not one of the available routes.
+    </p>
+    <p>
+        <button [routerLink]="['/']" mat-button color="primary"><mat-icon>house</mat-icon>Go Home?</button>
+    </p>
+    <div id="not-found-image" class="not-found-image"></div>
+</div>

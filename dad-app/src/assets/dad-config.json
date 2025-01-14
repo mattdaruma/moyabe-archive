@@ -1,0 +1,68 @@
+{
+    "Favicon": "/assets/dad-favicon.ico",
+    "Theme": {
+        "Color": "rgba(0, 255, 128, 1)"
+    },
+    "App": {
+        "Title": "Jeff Morris with RE/MAX",
+        "Icon": "house",
+        "Nav": [
+            {
+                "RouterLink": "/",
+                "Icon": "house",
+                "Display": "Home"
+            },
+            {
+                "RouterLink": "/friends",
+                "Icon": "diversity_3",
+                "Display": "Friends"
+            },
+            {
+                "RouterLink": "/contact",
+                "Icon": "mail",
+                "Display": "Contact"
+            },
+            {
+                "RouterLink": "/about",
+                "Icon": "person",
+                "Display": "About"
+            },
+            {
+                "RouterLink": "/tabletest",
+                "Icon": "quiz",
+                "Display": "Test Table"
+            },
+            {
+                "RouterLink": "/formtest",
+                "Icon": "quiz",
+                "Display": "Test Form"
+            }
+        ]
+    },
+    "Routes": [
+        {
+            "Path": "",
+            "DataUrl": "/assets/pages/home.json"
+        },
+        {
+            "Path": "friends",
+            "DataUrl": "/assets/pages/friends.json"
+        },
+        {
+            "Path": "contact",
+            "DataUrl": "/assets/pages/contact.json"
+        },
+        {
+            "Path": "about",
+            "DataUrl": "/assets/pages/about.json"
+        },
+        {
+            "Path": "tabletest",
+            "DataUrl": "/assets/pages/test-table.json"
+        },
+        {
+            "Path": "formtest",
+            "DataUrl": "/assets/pages/test-form.json"
+        }
+    ]
+}

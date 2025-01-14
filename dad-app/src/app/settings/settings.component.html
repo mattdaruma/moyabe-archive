@@ -1,0 +1,82 @@
+<div id="settings-container" class="center-flex settings-container dad-fade">
+    <div class="content-width-cap settings-content">
+        <mat-accordion>
+            <mat-expansion-panel class="panel-hidden-onload">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Theme
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Choose your color scheme. (Basic)
+                        <mat-icon>palette</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="settings-panel-content">
+                    <app-settings-colors></app-settings-colors>
+                </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel class="panel-hidden-onload">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        App
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Customize the app interface. (Intermediate)
+                        <mat-icon>menu</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="settings-panel-content">
+                    <p>title, icon</p>
+                    <p>nav</p>
+                    <p>favicon</p>
+                </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel class="panel-hidden-onload">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Cache
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Manage local files. (Intermediate)
+                        <mat-icon>cached</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="settings-panel-content">
+                    <div>
+                        <div>
+                            <button (click)="cache.ClearApp(); location.reload()" mat-button
+                                color="primary"><mat-icon>cached</mat-icon>Clear App  Cache</button>
+                        </div>
+                        <div>
+                            <button (click)="cache.ClearAll(); location.reload()" mat-button
+                                color="warn"><mat-icon>warning</mat-icon>Clear Domain  Cache</button>
+                        </div>
+                        <div class="cache-items-container">
+                            <h3>Cache Items</h3>
+                            <p>
+                                <button *ngFor="let c of cache.Meta" (click)="cache.Clear(c)" mat-button
+                                    color="accent"><mat-icon>clear</mat-icon>{{c}}</button>
+                            </p>
+                        </div>
+                    </div>
+                    <h3>
+                    </h3>
+                </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel class="panel-hidden-onload">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Routes
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Customize the app's routes. (Advanced)
+                        <mat-icon>route</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="settings-panel-content">
+                    <p>nav</p>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+</div>

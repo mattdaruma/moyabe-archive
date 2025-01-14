@@ -1,0 +1,3 @@
+<ng-container *ngIf="Widget | async as widget">
+    <app-dad-field-text *ngIf="widget.Type === 'field-text'" [Input]="widget"></app-dad-field-text>
+</ng-container>

@@ -1,0 +1,16 @@
+.settings-content{
+    width: 100%;
+}
+.settings-container{
+    padding: 1em;
+}
+.settings-content .mat-expansion-panel-header-description{
+    justify-content: space-between;
+    align-items: center;
+}
+.settings-panel-hidden{
+    display:none !important;
+}
+.cache-items-container{
+    padding-top: 1em;
+}

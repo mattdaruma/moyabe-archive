@@ -1,0 +1,20 @@
+
+.settings-row{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+.equal-flex > *{
+    flex-grow: 1
+}
+.right-align{
+    display: flex;
+    justify-content: flex-end;
+    gap: 1em;
+}
+.settings-form, .filters-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em
+}

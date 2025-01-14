@@ -1,0 +1,11 @@
+<ng-container *ngIf="StyledWidget | async as widget">
+    <button *ngIf="widget.Data?.Route" mat-button [color]="widget.Data?.Color" 
+        [routerLink]="widget.Data?.Route">
+        <mat-icon *ngIf="widget.Data?.Icon as icon">{{icon}}</mat-icon>
+        <span>{{widget.Data?.Text}}</span>
+    </button>
+    <button *ngIf="!widget.Data?.Route" mat-button [color]="widget.Data?.Color" >
+        <mat-icon *ngIf="widget.Data?.Icon as icon">{{icon}}</mat-icon>
+        <span>{{widget.Data?.Text}}</span>
+    </button>
+</ng-container>

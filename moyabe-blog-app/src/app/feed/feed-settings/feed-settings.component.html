@@ -1,0 +1,147 @@
+<div [hidden]="
+    !settings?.displayFilterOptions && 
+    !settings?.displayAuthorOptions && 
+    !settings?.displayTagOptions && 
+    !settings?.displayResetButtons
+    ">
+    <div [formGroup]="settingsForm" class="settings-form top-pad" >
+        <div formGroupName="filters" class="filters-form" >
+            <div class="settings-row equal-flex" *ngIf="settings?.displayFilterOptions === true">
+                <mat-form-field appearance="outline">
+                    <mat-label>Title</mat-label>
+                    <input matInput placeholder="Title" formControlName="title">
+                    <button mat-icon-button matSuffix color="warn"><mat-icon>clear</mat-icon></button>
+                    <mat-hint>Title contains this text.</mat-hint>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <input matInput placeholder="Description" formControlName="description">
+                    <button mat-icon-button matSuffix color="warn"><mat-icon>clear</mat-icon></button>
+                    <mat-hint>Description contains this text.</mat-hint>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>After</mat-label>
+                    <input matInput [matDatepicker]="afterDate" formControlName="after">
+                    <button mat-icon-button matSuffix color="warn"><mat-icon>clear</mat-icon></button>
+                    <mat-hint>Posted after this date.</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="afterDate"></mat-datepicker-toggle>
+                    <mat-datepicker #afterDate>
+                        <mat-datepicker-actions>
+                            <button mat-button matDatepickerCancel>Cancel</button>
+                            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                        </mat-datepicker-actions>
+                    </mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Before</mat-label>
+                    <input matInput [matDatepicker]="beforeDate" formControlName="before">
+                    <button mat-icon-button matSuffix color="warn"><mat-icon>clear</mat-icon></button>
+                    <mat-hint>Posted before this date.</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="beforeDate"></mat-datepicker-toggle>
+                    <mat-datepicker #beforeDate>
+                        <mat-datepicker-actions>
+                            <button mat-button matDatepickerCancel>Cancel</button>
+                            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                        </mat-datepicker-actions>
+                    </mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="settings-row equal-flex" *ngIf="settings?.displayAuthorOptions === true">
+                <mat-form-field appearance="outline">
+                    <mat-label>Authors Included</mat-label>
+                    <mat-chip-grid #authorsIncludesGrid>
+                        <mat-chip-row color="warn" *ngFor="let authorId of settings?.filterAuthorsInclude; let i = index"
+                            (removed)="removeIncludedAuthor(authors![authorId])">
+                            {{authors ? authors![authorId].displayName : ''}}
+                            <button matChipRemove>
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </mat-chip-row>
+                    </mat-chip-grid>
+                    <mat-icon color="primary" matPrefix>add_task</mat-icon>
+                    <input [matChipInputFor]="authorsIncludesGrid" [matAutocomplete]="authorsAuto"
+                        [formControl]="includedAuthorsControl" />
+                    <mat-autocomplete #authorsAuto="matAutocomplete"
+                        (optionSelected)="addIncludedAuthor($event.option.value)">
+                        <mat-option *ngFor="let author of (filteredIncludedAuthors | async)" [value]="author">
+                            {{author.displayName}}
+                        </mat-option>
+                    </mat-autocomplete>
+                    <mat-hint>Any of these authors.</mat-hint>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Authors Excluded</mat-label>
+                    <mat-chip-grid #authorsExcludeGrid>
+                        <mat-chip-row *ngFor="let authorId of settings?.filterAuthorsExclude; let i = index"
+                            (removed)="removeExcludedAuthor(authors![authorId])">
+                            {{authors ? authors![authorId].displayName : ''}}
+                            <button matChipRemove>
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </mat-chip-row>
+                    </mat-chip-grid>
+                    <mat-icon color="warn" matPrefix>block</mat-icon>
+                    <input [matChipInputFor]="authorsExcludeGrid" [matAutocomplete]="authorsExcludedOptions"
+                    [formControl]="excludedAuthorsControl" />
+                    <mat-autocomplete #authorsExcludedOptions="matAutocomplete"
+                        (optionSelected)="addExcludedAuthor($event.option.value)">
+                        <mat-option *ngFor="let author of (filteredExcludedAuthors | async)" [value]="author">
+                            {{author.displayName}}
+                        </mat-option>
+                    </mat-autocomplete>
+                    <mat-hint>None of these authors.</mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="settings-row equal-flex" *ngIf="settings?.displayTagOptions === true">
+                <mat-form-field appearance="outline">
+                    <mat-label>Tags Included</mat-label>
+                    <mat-chip-grid #tagsIncludeGrid>
+                        <mat-chip-row color="warn" *ngFor="let tag of settings?.filterTagsInclude; let i = index"
+                            (removed)="removeIncludedTag(tag)">
+                            {{tag}}
+                            <button matChipRemove>
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </mat-chip-row>
+                    </mat-chip-grid>
+                    <mat-icon color="primary" matPrefix>add_task</mat-icon>
+                    <input [matChipInputFor]="tagsIncludeGrid" [matAutocomplete]="tagsIncludedOptions"
+                        [formControl]="includedTagsControl" />
+                    <mat-autocomplete #tagsIncludedOptions="matAutocomplete"
+                        (optionSelected)="addIncludedTag($event.option.value)">
+                        <mat-option *ngFor="let tag of (filteredIncludedTags | async)" [value]="tag">
+                            {{tag}}
+                        </mat-option>
+                    </mat-autocomplete>
+                    <mat-hint>Any of these tags.</mat-hint>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Tags Excluded</mat-label>
+                    <mat-chip-grid #tagsExcludeGrid>
+                        <mat-chip-row *ngFor="let tag of settings?.filterTagsExclude; let i = index"
+                            (removed)="removeExcludedTag(tag)">
+                            {{tag}}
+                            <button matChipRemove>
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </mat-chip-row>
+                    </mat-chip-grid>
+                    <mat-icon color="warn" matPrefix>block</mat-icon>
+                    <input [matChipInputFor]="tagsExcludeGrid" [matAutocomplete]="tagsExcludedOptions"
+                        [formControl]="excludedTagsControl" />
+                    <mat-autocomplete #tagsExcludedOptions="matAutocomplete"
+                        (optionSelected)="addExcludedTag($event.option.value)">
+                        <mat-option *ngFor="let tag of (filteredExcludedTags | async)" [value]="tag">
+                            {{tag}}
+                        </mat-option>
+                    </mat-autocomplete>
+                    <mat-hint>None of these tags.</mat-hint>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="settings-row" *ngIf="settings?.displayResetButtons === true">
+            <button mat-raised-button color="warn" (click)="clearFilters()"><mat-icon>clear</mat-icon>Clear
+                Filters</button>
+        </div>
+    </div>
+</div>

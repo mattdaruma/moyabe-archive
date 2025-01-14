@@ -1,0 +1,74 @@
+{
+    "Type": "container",
+    "Style": {
+        "justifyContent": "center",
+        "display": "flex",
+        "flexDirection": "row",
+        "flexWrap": "wrap"
+    },
+    "Children": [
+        {
+            "Type": "container-item",
+            "Style": {
+                "flexBasis": "100%"
+            },
+            "Children": [
+                {
+                    "Type": "banner",
+                    "Id": "banner-abc-123",
+                    "Style": {
+                        "height": "30em",
+                        "backgroundImage": "url('/assets/images/terrah-holly-pmhdkgRCbtE-unsplash.jpg')"
+                    },
+                    "Image": {
+                        "Type": "dad-image",
+                        "URL": "/assets/images/terrah-holly-pmhdkgRCbtE-unsplash.jpg"
+                    }
+                }
+            ]
+        },
+        {
+            "Type": "container-item",
+            "Style": {
+                "padding": "1em"
+            },
+            "Children": [
+                {
+                    "Type": "card",
+                    "Style": {
+                        "maxWidth": "1000px"
+                    },
+                    "Title": "Jeff Morris",
+                    "Subtitle": "RE/MAX - Trussville, AL",
+                    "Avatar": {
+                        "Title":"Jeff Morris",
+                        "URL": "/assets/images/agent.jpg"
+                    },
+                    "Children": [
+                        {
+                            "Type": "view",
+                            "HTML": "<h3>Life-long resident of the Greater Birmingham Area with a history of service to my community. I can't wait to help you!</h3>"
+                        }
+                    ],
+                    "Actions": [
+                        {
+                            "Icon": "person",
+                            "Text": "About",
+                            "Route": ["/","about"]
+                        },
+                        {
+                            "Icon": "diversity_3",
+                            "Text": "Friends",
+                            "Route": ["/","friends"]
+                        },
+                        {
+                            "Icon": "mail",
+                            "Text": "Contact",
+                            "Route": ["/","contact"]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

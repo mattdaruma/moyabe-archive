@@ -1,0 +1,10 @@
+<app-dad-container *ngIf="Widget?.Type === 'container'" [Input]="Widget!"></app-dad-container>
+<app-dad-banner *ngIf="Widget?.Type === 'banner'" [Input]="Widget!"></app-dad-banner>
+<app-dad-card *ngIf="Widget?.Type === 'card'" [Input]="Widget!"></app-dad-card>
+<app-dad-chart *ngIf="Widget?.Type === 'chart'" [Input]="Widget!"></app-dad-chart>
+<app-dad-editor *ngIf="Widget?.Type === 'editor'" [Input]="Widget!"></app-dad-editor>
+<app-dad-form *ngIf="Widget?.Type === 'form'" [Input]="Widget!"></app-dad-form>
+<app-dad-field *ngIf="Widget?.Type?.startsWith('field')" [Input]="Widget!"></app-dad-field>
+<app-dad-table *ngIf="Widget?.Type === 'table'" [Input]="Widget!"></app-dad-table>
+<app-dad-view *ngIf="Widget?.Type==='view'" [Input]="Widget!"></app-dad-view>
+<app-dad-text *ngIf="Widget?.Type==='text'" [Input]="Widget!"></app-dad-text>

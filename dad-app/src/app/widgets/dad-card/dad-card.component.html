@@ -1,0 +1,22 @@
+<mat-card *ngIf="Widget | async as card" class="dad-card" [style]="card.Data.Style">
+    <img *ngIf="card.Data.Image?.URL" [style]="card.Data.Image?.Style" mat-card-image [src]="card.Data.Image?.URL" [title]="card.Data.Image?.Title">
+    <mat-card-header *ngIf="card.Data.Title || card.Data.Subtitle || card.Data.Avatar">
+        <mat-card-title>{{card.Data.Title}}</mat-card-title>
+        <mat-card-subtitle>{{card.Data.Subtitle}}</mat-card-subtitle>
+        <img [style]="card.Data.Avatar?.Style" mat-card-avatar [src]="card.Data.Avatar?.URL" [title]="card.Data.Avatar?.Title">
+    </mat-card-header>
+    <mat-card-content *ngIf="(card.Children.length ?? 0) > 0">
+        <app-dad-widget *ngFor="let widget of card.Children" [Widget]="widget"></app-dad-widget>
+    </mat-card-content>
+    <mat-card-actions *ngIf="(card.Data.Actions?.length ?? 0) > 0">
+        <button mat-button *ngFor="let action of card.Data.Actions" 
+            [style]="action.Style" [color]="action.Color ?? 'primary'"
+            [routerLink]="action.Route">
+            <mat-icon *ngIf="action.Icon">{{action.Icon}}</mat-icon>
+            {{action.Text}}
+        </button>
+    </mat-card-actions>
+    <mat-card-footer *ngIf="card.Data.Footer">
+        {{card.Data.Footer}}
+    </mat-card-footer>
+</mat-card>

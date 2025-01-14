@@ -1,0 +1,4 @@
+<div id="color-picker-container" class="center-flex">
+    <span [(colorPicker)]="color" [cpToggle]="true" [cpDialogDisplay]="'inline'" [cpAlphaChannel]="'always'"
+        [cpOutputFormat]="'rgba'" (colorPickerChange)="SeedColorSelect($event)"></span>
+</div>

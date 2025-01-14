@@ -1,0 +1,22 @@
+{
+  "name": "fiverealms-queue",
+  "version": "1.0.0",
+  "description": "A fifo queue prototype for fiverealms actions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattdaruma/fiverealms-queue.git"
+  },
+  "author": "mattdaruma",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mattdaruma/fiverealms-queue/issues"
+  },
+  "homepage": "https://github.com/mattdaruma/fiverealms-queue#readme",
+  "dependencies": {
+    "simple-json-db": "^2.0.0"
+  }
+}

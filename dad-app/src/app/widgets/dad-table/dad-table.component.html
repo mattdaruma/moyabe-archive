@@ -1,0 +1,119 @@
+<table matSort mat-table [dataSource]="(Data | async) ?? []" (matSortChange)="OnSort($event)" cdkDropListGroup
+    cdkDropList cdkDropListOrientation="horizontal" cdkDropListLockAxis="x" (cdkDropListDropped)="OnDrop($event)">
+
+    <ng-container matColumnDef="header">
+        <td mat-header-cell *matHeaderCellDef [colSpan]="(DisplayedColumnKeys | async)?.length">
+            <h1>Uber Table</h1>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="filters">
+        <td mat-header-cell *matHeaderCellDef [colSpan]="(DisplayedColumnKeys | async)?.length">
+            <form [formGroup]="FilterForm">
+                <ng-container *ngFor="let col of DisplayedColumns | async" [ngSwitch]="col.Type">
+                    <mat-form-field *ngSwitchCase="'string'">
+                        <mat-label>{{col.Display}}</mat-label>
+                        <input type="text" matInput [formControlName]="col.Key">
+                        <mat-icon color="primary" matSuffix>text_fields</mat-icon>
+                    </mat-form-field>
+                    <ng-container *ngSwitchCase="'number'">
+                        <mat-form-field>
+                            <mat-label>&gt;{{col.Display}}</mat-label>
+                            <input type="number" matInput [formControlName]="col.Key+'-gt'">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>&lt;{{col.Display}}</mat-label>
+                            <input type="number" matInput [formControlName]="col.Key+'-lt'">
+                        </mat-form-field>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'date'">
+                        <mat-form-field>
+                            <mat-label>&gt;{{col.Display}}</mat-label>
+                            <input matInput [matDatepicker]="greaterThanDate" [formControlName]="col.Key+'-gt'">
+                            <mat-datepicker-toggle matIconSuffix [for]="greaterThanDate"></mat-datepicker-toggle>
+                            <mat-datepicker #greaterThanDate></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>&lt;{{col.Display}}</mat-label>
+                            <input matInput [matDatepicker]="lessThanDate" [formControlName]="col.Key+'-lt'">
+                            <button color="accent" matSuffix mat-icon-button (click)="lessThanDate.open()">
+                                <mat-icon matDatepickerToggleIcon>event</mat-icon>
+                            </button>
+                            <!-- <mat-datepicker-toggle matIconSuffix [for]="lessThanDate"></mat-datepicker-toggle> -->
+                            <mat-datepicker #lessThanDate>
+                                <mat-datepicker-actions>
+                                    <button color="warn" mat-icon-button (click)="lessThanDate.select(null); lessThanDate.close()">
+                                        <mat-icon>clear</mat-icon>
+                                    </button>
+                                    <button color="primary" mat-icon-button (click)="lessThanDate._applyPendingSelection(); lessThanDate.close()">
+                                        <mat-icon>check</mat-icon>
+                                    </button>
+                                </mat-datepicker-actions>
+                            </mat-datepicker>
+                        </mat-form-field>
+                    </ng-container>
+                </ng-container>
+            </form>
+        </td>
+    </ng-container>
+
+    <ng-container *ngIf="(HiddenColumns | async)?.length ?? 0 > 0">
+        <ng-container matColumnDef="hidden-columns">
+            <td mat-header-cell *matHeaderCellDef [colSpan]="(DisplayedColumnKeys | async)?.length">
+                <button mat-button color="accent" *ngFor="let col of (HiddenColumns | async)"
+                    (click)="OnAddColumn(col)">
+                    <mat-icon>add</mat-icon>
+                    {{col.Display}}</button>
+            </td>
+        </ng-container>
+    </ng-container>
+
+    <ng-container matColumnDef="paginator-upper">
+        <td mat-header-cell *matHeaderCellDef [colSpan]="(DisplayedColumnKeys | async)?.length">
+            <ng-container *ngTemplateOutlet="paginator"></ng-container>
+        </td>
+    </ng-container>
+
+    <ng-container *ngFor="let column of Columns | async" [matColumnDef]="column.Key">
+        <mat-header-cell *matHeaderCellDef cdkDragLockAxis="x" cdkDrag>
+            <span [mat-sort-header]="column.Key">
+                {{column.Display}}
+            </span>
+            <button (click)="OnRemoveColumn(column)" mat-icon-button color="warn">
+                <mat-icon>clear</mat-icon>
+            </button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <span *ngIf="column.Type !== 'date'">
+                {{row[column.Key]}}
+            </span>
+            <span *ngIf="column.Type === 'date'">
+                {{row[column.Key] | date}}
+            </span>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="paginator-lower">
+        <td mat-footer-cell *matFooterCellDef [colSpan]="(DisplayedColumnKeys | async)?.length">
+            <ng-container *ngTemplateOutlet="paginator"></ng-container>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['header']"></tr>
+    <tr mat-header-row *matHeaderRowDef="['filters']"></tr>
+    <ng-container *ngIf="(HiddenColumns | async)?.length ?? 0 > 0">
+        <tr mat-header-row *matHeaderRowDef="['hidden-columns']"></tr>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="['paginator-upper']"></tr>
+
+    <mat-header-row *matHeaderRowDef="DisplayedColumnKeys | async"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: DisplayedColumnKeys | async;"></mat-row>
+
+    <tr mat-footer-row *matFooterRowDef="['paginator-lower']"></tr>
+</table>
+
+<ng-template #paginator>
+    <mat-paginator [pageIndex]="(Page | async)?.pageIndex ?? 0" [length]="DataCount"
+        [pageSize]="(Page | async)?.pageSize ?? 5" [pageSizeOptions]="[1, 5, 10, 25, 50, 100]"
+        showFirstLastButtons="true" (page)="OnPage($event)"></mat-paginator>
+</ng-template>

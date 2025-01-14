@@ -1,0 +1,27 @@
+<div class="dad-app-container dad-fade" #dadAppContainer >
+  <!-- <mat-progress-bar [color]="((Progress | async) ?? 0) >= 100 ? 'primary' : 'accent'" [mode]="'buffer'"
+    [value]="((Progress | async) ?? 0)" [bufferValue]="((Progress | async) ?? 0)"></mat-progress-bar> -->
+  <div id="dad-app-header" class="dad-app-header" *ngIf="AppConfig | async as config">
+    <mat-toolbar color="default" class="dad-app-toolbar">
+      <button mat-icon-button color="primary" [routerLink]="['/']">
+        <mat-icon id="dad-app-header-icon" class="dad-app-header-icon">{{config.Icon}}</mat-icon>
+      </button>
+      <span [routerLink]="['/']" id="dad-app-header-title" class="dad-app-header-title">
+        {{config.Title}}
+      </span>
+      <mat-icon class="network-icon dad-fade" [ngClass]="(PendingRequests | async) ? 'dad-fade-show' : ''" style="margin-left: 8px" color="accent">language</mat-icon>
+      <span class="toolbar-spacer"></span>
+      <button mat-icon-button color="accent" [routerLink]="['/', '⚙']"><mat-icon>settings</mat-icon></button>
+      <button mat-icon-button color="primary" [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+      <mat-menu #menu="matMenu">
+        <button color="primary" *ngFor="let nav of config.Nav" mat-menu-item [routerLink]="[nav.RouterLink]">
+          <mat-icon color="primary">{{nav.Icon}}</mat-icon>
+          <span>{{nav.Display}}</span>
+        </button> 
+      </mat-menu> 
+    </mat-toolbar>
+  </div>
+  <div class="dad-app-contents">
+    <router-outlet></router-outlet>
+  </div>
+</div>

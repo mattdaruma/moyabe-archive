@@ -1,0 +1,5 @@
+<div *ngIf="StyledWidget | async as widget" class="dad-banner-image" [style]="widget.Data?.Style">
+    <app-dad-widget *ngFor="let child of widget.Children" [Widget]="child"></app-dad-widget>
+</div>
+<img hidden *ngIf="StyledWidget | async as widget" [src]="widget.Data?.URL" [title]="widget.Data?.Title" (load)="ImageLoaded()"
+    (error)="ImageError()">

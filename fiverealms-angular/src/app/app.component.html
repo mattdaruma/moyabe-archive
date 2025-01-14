@@ -1,0 +1,25 @@
+<div class="feed">
+  <div *ngFor="let msg of messages">
+    <hr [color]="msg.input ? 'accent': msg.system ? '' : 'primary'">
+    <div class="message-text">
+      {{ msg.message }}
+    </div>
+    <div>
+      <small>{{msg.timestamp| date:'yyyy-MM-dd hh:mm:ss.SSS'}}</small>
+    </div>
+  </div>
+</div>
+<div class="command-bar">
+  <div class="command-block">
+    <mat-form-field appearance="fill">
+      <mat-label>Command</mat-label>
+      <input matInput [formControl]="commandInput" [matAutocomplete]="commandTips" (keydown.enter)="sendCommand()">
+      <mat-icon matSuffix color="accent">send</mat-icon>
+      <mat-hint>connection HP: X MP: X</mat-hint>
+    </mat-form-field>
+  </div>
+</div>
+<mat-autocomplete #commandTips="matAutocomplete">
+  <!-- <mat-option value="1">one</mat-option>
+  <mat-option value="2">two</mat-option> -->
+</mat-autocomplete>

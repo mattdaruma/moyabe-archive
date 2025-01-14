@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+@import './../node_modules/quill/dist/quill.bubble.css';
+@import './../node_modules/quill/dist/quill.snow.css';
+@import "./../node_modules/angular-material-css-vars/index.scss";
+@include init-material-css-vars();
+
+.dad-fade{
+    opacity: 0;
+    transition: opacity .3s;
+}
+.dad-fade-show{
+    opacity: 1;
+}
+
+.view-quill .ql-editor, 
+.rgba-text,
+.rgba-text > box{
+    padding: 0 !important;
+}
+
+.box{
+    padding-right: 8px !important;
+}
+
+.color-picker .type-policy {
+    display: none !important;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.content-width{
+    width: 960px;
+}
+.content-width-cap{
+    max-width: 960px;
+}
+.center-flex{
+    display: flex;
+    justify-content: center;
+}
+
+//prevent expansion panels from starting open
+.ng-animating div mat-accordion mat-expansion-panel div.mat-expansion-panel-content {
+    display:none;
+}
+//alternate version for supporting starting with one panel open, tag every other panel with hidden class
+// .ng-animating div mat-accordion mat-expansion-panel.panel-hidden-onload div.mat-expansion-panel-content {
+//     display:none;
+// }

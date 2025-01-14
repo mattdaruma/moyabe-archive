@@ -1,0 +1,16 @@
+#no-template-image{
+    width: 100%;
+    max-width: 40em;
+    height: 66vh;
+    background-size: cover;
+    background-position: center;
+    background-image: url("/assets/images/mulyadi-ZnLprInKM7s-unsplash-cropped.jpg");
+    box-shadow: inset 0 0 3em 5em var(--theme-fuzz);
+}
+#no-template-container{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}

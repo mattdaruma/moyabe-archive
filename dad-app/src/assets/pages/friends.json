@@ -1,0 +1,172 @@
+[
+    {
+        "Type": "container",
+        "Style": {
+            "display": "flex",
+            "flexDirection": "column",
+            "padding": "1em",
+            "flexWrap": "wrap",
+            "gap": "1em"
+        },
+        "Children": [
+            {
+                "Type": "container-item",
+                "Children": [{
+                    "Type": "card",
+                    "Children": [
+                        {
+                            "Type": "card-content",
+                            "Children": [{
+                                "Type": "container",
+                                "Style": {
+                                    "display": "flex",
+                                    "gap": "1em"
+                                },
+                                "Children": [
+                                    {
+                                        "Type": "container-item",
+                                        "Style": {
+                                            "width": "20em",
+                                            "height": "20em"
+                                        },
+                                        "Children": [{
+                                            "Type": "banner",
+                                            "Style": {
+                                                "height": "100%",
+                                                "width": "100%",
+                                                "boxShadow": "none"
+                                            },
+                                            "Image": {
+                                                "Type": "image",
+                                                "URL": "/assets/images/terrah-holly-pmhdkgRCbtE-unsplash.jpg"
+                                            }
+                                        }]
+                                    },
+                                    {
+                                        "Type": "container-item",
+                                        "Children": [{
+                                            "Type": "container",
+                                            "Style": {
+                                                "display": "flex",
+                                                "flexDirection": "column"
+                                            },
+                                            "Children": [
+                                                {
+                                                    "Type": "container-item",
+                                                    "Children": [{
+                                                        "Type": "view",
+                                                        "HTML": "<h1>My Friend</h1>"
+                                                    }]
+                                                },
+                                                {
+                                                    "Type": "container-item",
+                                                    "Children": [{
+                                                        "Type": "view",
+                                                        "HTML": "<h2>Master of Business</h2>"
+                                                    }]
+                                                },
+                                                {
+                                                    "Type": "container-item",
+                                                    "Children": [{
+                                                        "Type": "text",
+                                                        "Text": "My friend's business is the greatest business."
+                                                    }]
+                                                },
+                                                {
+                                                    "Type": "container-item",
+                                                    "Children": [{
+                                                        "Type": "view",
+                                                        "HTML": "<a href=\"https://google.com/\">Link to Friend</a>"
+                                                    }]
+                                                }
+                                            ]
+                                        }]
+                                    }
+                                ]
+                            }]
+                        }
+                    ]
+                }]
+            },
+            {
+                "Type": "container-item",
+                "Children": [{
+                    "Type": "card",
+                    "Children": [
+                        {
+                            "Type": "card-content",
+                            "Children": [{
+                                "Type": "container",
+                                "Style": {
+                                    "display": "flex",
+                                    "gap": "1em"
+                                },
+                                "Children": [
+                                    {
+                                        "Type": "container-item",
+                                        "Style": {
+                                            "width": "20em",
+                                            "height": "20em"
+                                        },
+                                        "Children": [{
+                                            "Type": "banner",
+                                            "Style": {
+                                                "height": "100%",
+                                                "width": "100%",
+                                                "boxShadow": "none"
+                                            },
+                                            "Image": {
+                                                "Type": "image",
+                                                "URL": "/assets/images/terrah-holly-pmhdkgRCbtE-unsplash.jpg"
+                                            }
+                                        }]
+                                    },
+                                    {
+                                        "Type": "container-item",
+                                        "Children": [{
+                                            "Type": "container",
+                                            "Style": {
+                                                "display": "flex",
+                                                "flexDirection": "column"
+                                            },
+                                            "Children": [
+                                                {
+                                                    "Type": "container-item",
+                                                    "Children": [{
+                                                        "Type": "view",
+                                                        "HTML": "<h1>My Friend</h1>"
+                                                    }]
+                                                },
+                                                {
+                                                    "Type": "container-item",
+                                                    "Children": [{
+                                                        "Type": "view",
+                                                        "HTML": "<h2>Master of Business</h2>"
+                                                    }]
+                                                },
+                                                {
+                                                    "Type": "container-item",
+                                                    "Children": [{
+                                                        "Type": "text",
+                                                        "Text": "My friend's business is the greatest business."
+                                                    }]
+                                                },
+                                                {
+                                                    "Type": "container-item",
+                                                    "Children": [{
+                                                        "Type": "view",
+                                                        "HTML": "<a href=\"https://google.com/\">Link to Friend</a>"
+                                                    }]
+                                                }
+                                            ]
+                                        }]
+                                    }
+                                ]
+                            }]
+                        }
+                    ]
+                }]
+            }
+        ]
+    }
+]

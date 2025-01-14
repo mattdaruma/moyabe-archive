@@ -1,0 +1,5 @@
+<div class="dad-container" [style]="(Widget | async)?.Data?.Style">
+    <div class="dad-container-item" *ngFor="let item of (Widget | async)?.Children" [style]="item?.Data?.Style">
+        <app-dad-widget *ngFor="let widget of item?.Children" [Widget]="widget"></app-dad-widget>
+    </div>
+</div>

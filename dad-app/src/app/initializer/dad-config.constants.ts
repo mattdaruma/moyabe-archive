@@ -1,0 +1,1 @@
+export const DAD_CONFIG_CACHE_KEY = 'DAD-CONFIG'

@@ -1,0 +1,168 @@
+// @use '@angular/material' as mat;
+
+// :root {
+//   --theme-fuzz: rgb(250,250,250);
+//   --theme-fuzz-anti: #333;
+// }
+
+// $dynamic-primary-palette: (
+//   50: var(--theme-primary-50),
+//   100: var(--theme-primary-100),
+//   200: var(--theme-primary-200),
+//   300: var(--theme-primary-300),
+//   400: var(--theme-primary-400),
+//   500: var(--theme-primary-500),
+//   600: var(--theme-primary-600),
+//   700: var(--theme-primary-700),
+//   800: var(--theme-primary-800),
+//   900: var(--theme-primary-900),
+//   A100: var(--theme-primary-A100),
+//   A200: var(--theme-primary-A200),
+//   A400: var(--theme-primary-A400),
+//   A700: var(--theme-primary-A700),
+//   contrast: (50: var(--theme-primary-contrast-50),
+//     100: var(--theme-primary-contrast-100),
+//     200: var(--theme-primary-contrast-200),
+//     300: var(--theme-primary-contrast-300),
+//     400: var(--theme-primary-contrast-400),
+//     500: var(--theme-primary-contrast-500),
+//     600: var(--theme-primary-contrast-600),
+//     700: var(--theme-primary-contrast-700),
+//     800: var(--theme-primary-contrast-800),
+//     900: var(--theme-primary-contrast-900),
+//     A100: var(--theme-primary-contrast-A100),
+//     A200: var(--theme-primary-contrast-A200),
+//     A400: var(--theme-primary-contrast-A400),
+//     A700: var(--theme-primary-contrast-A700),
+//   )
+// );
+
+// $dynamic-accent-palette: (
+//   50: var(--theme-accent-50),
+//   100: var(--theme-accent-100),
+//   200: var(--theme-accent-200),
+//   300: var(--theme-accent-300),
+//   400: var(--theme-accent-400),
+//   500: var(--theme-accent-500),
+//   600: var(--theme-accent-600),
+//   700: var(--theme-accent-700),
+//   800: var(--theme-accent-800),
+//   900: var(--theme-accent-900),
+//   A100: var(--theme-accent-A100),
+//   A200: var(--theme-accent-A200),
+//   A400: var(--theme-accent-A400),
+//   A700: var(--theme-accent-A700),
+//   contrast: (50: var(--theme-accent-contrast-50),
+//     100: var(--theme-accent-contrast-100),
+//     200: var(--theme-accent-contrast-200),
+//     300: var(--theme-accent-contrast-300),
+//     400: var(--theme-accent-contrast-400),
+//     500: var(--theme-accent-contrast-500),
+//     600: var(--theme-accent-contrast-600),
+//     700: var(--theme-accent-contrast-700),
+//     800: var(--theme-accent-contrast-800),
+//     900: var(--theme-accent-contrast-900),
+//     A100: var(--theme-accent-contrast-A100),
+//     A200: var(--theme-accent-contrast-A200),
+//     A400: var(--theme-accent-contrast-A400),
+//     A700: var(--theme-accent-contrast-A700),
+//   )
+// );
+
+// $dynamic-warn-palette: (
+//   50: var(--theme-warn-50),
+//   100: var(--theme-warn-100),
+//   200: var(--theme-warn-200),
+//   300: var(--theme-warn-300),
+//   400: var(--theme-warn-400),
+//   500: var(--theme-warn-500),
+//   600: var(--theme-warn-600),
+//   700: var(--theme-warn-700),
+//   800: var(--theme-warn-800),
+//   900: var(--theme-warn-900),
+//   A100: var(--theme-warn-A100),
+//   A200: var(--theme-warn-A200),
+//   A400: var(--theme-warn-A400),
+//   A700: var(--theme-warn-A700),
+//   contrast: (50: var(--theme-warn-contrast-50),
+//     100: var(--theme-warn-contrast-100),
+//     200: var(--theme-warn-contrast-200),
+//     300: var(--theme-warn-contrast-300),
+//     400: var(--theme-warn-contrast-400),
+//     500: var(--theme-warn-contrast-500),
+//     600: var(--theme-warn-contrast-600),
+//     700: var(--theme-warn-contrast-700),
+//     800: var(--theme-warn-contrast-800),
+//     900: var(--theme-warn-contrast-900),
+//     A100: var(--theme-warn-contrast-A100),
+//     A200: var(--theme-warn-contrast-A200),
+//     A400: var(--theme-warn-contrast-A400),
+//     A700: var(--theme-warn-contrast-A700),
+//   )
+// );
+
+// $dynamic-theme: mat.define-light-theme((color: (primary: mat.define-palette($dynamic-primary-palette),
+//         accent: mat.define-palette($dynamic-accent-palette),
+//         warn: mat.define-palette($dynamic-warn-palette),
+//       )));
+
+// $dynamic-dark-theme: mat.define-dark-theme((color: (primary: mat.define-palette($dynamic-primary-palette),
+//         accent: mat.define-palette($dynamic-accent-palette),
+//         warn: mat.define-palette($dynamic-warn-palette),
+//       )));
+
+// $dynamic-foreground-palette: (
+//   base: var(--theme-foreground),
+//   divider: var(--theme-divider),
+//   dividers: var(--theme-divider),
+//   disabled: var(--theme-disabled-text),
+//   disabled-button: var(--theme-disabled-button-foreground),
+//   disabled-text: var(--theme-disabled-text),
+//   elevation: var(--theme-elevation),
+//   hint-text: var(--theme-disabled-text),
+//   secondary-text: var(--theme-secondary-text),
+//   icon: var(--theme-icon),
+//   icons: var(--theme-icons),
+//   text: var(--theme-text),
+//   slider-min: var(--theme-slider-min),
+//   slider-off: var(--theme-slider-off),
+//   slider-off-active: var(--theme-slider-off-active),
+// );
+
+// $dynamic-background-palette: (
+//   status-bar: var(--theme-status-bar),
+//   app-bar: var(--theme-app-bar),
+//   background: var(--theme-background),
+//   hover: var(--theme-hover),
+//   card: var(--theme-card),
+//   dialog: var(--theme-dialog),
+//   disabled-button: var(--theme-disabled-button-background),
+//   raised-button: var(--theme-raised-button),
+//   focused-button: var(--theme-focused-button),
+//   selected-button: var(--theme-selected-button),
+//   selected-disabled-button: var(--theme-selected-disabled-button),
+//   disabled-button-toggle: var(--theme-disabled-button-toggle),
+//   unselected-chip: var(--theme-unselected-chip),
+//   disabled-list-option: var(--theme-disabled-list-option),
+//   tooltip: var(--theme-tooltip),
+// );
+
+
+// // $palette-color: map-get($dynamic-theme, color);
+// // $palette-color: map_merge($palette-color, (foreground: $dynamic-foreground-palette));
+// // // $palette-color: map_merge($palette-color, (background: $dynamic-background-palette));
+// // $dynamic-theme: map_merge($dynamic-theme, (color: $palette-color));
+
+
+// // $palette-color: map-get($dynamic-dark-theme, color);
+// // $palette-color: map_merge($palette-color, (foreground: $dynamic-foreground-palette));
+// // //$palette-color: map_merge($palette-color, (background: $dynamic-background-palette));
+// // $dynamic-dark-theme: map_merge($dynamic-dark-theme, (color: $palette-color));
+
+
+// @include mat.core();
+// //@include mat.strong-focus-indicators();
+// @include mat.all-component-themes($dynamic-theme); 
+// .theme-dark {
+//   @include mat.all-component-colors($dynamic-dark-theme); 
+// }

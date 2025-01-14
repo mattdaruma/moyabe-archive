@@ -1,0 +1,125 @@
+{
+    "Id": "main-container",
+    "Type": "container",
+    "Style": {
+        "justifyContent": "center",
+        "display": "flex",
+        "flexDirection": "row",
+        "flexWrap": "wrap"
+    },
+    "Children": [
+        {
+            "Id": "main-container-item",
+            "Type": "container-item",
+            "Style": {
+                "flexBasis": "100%",
+                "padding": "1em"
+            },
+            "Children": [
+                {
+                    "Id": "main-table",
+                    "Type": "table",
+                    "Columns": [
+                        {
+                            "Key": "position",
+                            "Display": "No.",
+                            "Type":"number"
+                        },
+                        {
+                            "Key": "name",
+                            "Display": "Name",
+                            "Type": "string"
+                        },
+                        {
+                            "Key": "weight",
+                            "Display": "Weight",
+                            "Type": "number"
+                        },
+                        {
+                            "Key": "symbol",
+                            "Display": "Symbol",
+                            "Type": "string"
+                        },
+                        {
+                            "Key": "atomdate",
+                            "Display": "Atom Date",
+                            "Type": "date"
+                        }
+                    ],
+                    "Data": [
+                        {
+                            "position": 1,
+                            "name": "Hydrogen",
+                            "weight": 1.0079,
+                            "symbol": "H",
+                            "atomdate": 1711516124657
+                        },
+                        {
+                            "position": 2,
+                            "name": "Helium",
+                            "weight": 4.0026,
+                            "symbol": "He",
+                            "atomdate": 1711516124657
+                        },
+                        {
+                            "position": 3,
+                            "name": "Lithium",
+                            "weight": 6.941,
+                            "symbol": "Li",
+                            "atomdate": 1711516124657
+                        },
+                        {
+                            "position": 4,
+                            "name": "Beryllium",
+                            "weight": 9.0122,
+                            "symbol": "Be",
+                            "atomdate": 1711516124657
+                        },
+                        {
+                            "position": 5,
+                            "name": "Boron",
+                            "weight": 10.811,
+                            "symbol": "B",
+                            "atomdate": 1711516124657
+                        },
+                        {
+                            "position": 6,
+                            "name": "Carbon",
+                            "weight": 12.0107,
+                            "symbol": "C",
+                            "atomdate": 1711516124657
+                        },
+                        {
+                            "position": 7,
+                            "name": "Nitrogen",
+                            "weight": 14.0067,
+                            "symbol": "N",
+                            "atomdate": 1711516124657
+                        },
+                        {
+                            "position": 8,
+                            "name": "Oxygen",
+                            "weight": 15.9994,
+                            "symbol": "O",
+                            "atomdate": 1711516124657
+                        },
+                        {
+                            "position": 9,
+                            "name": "Fluorine",
+                            "weight": 18.9984,
+                            "symbol": "F",
+                            "atomdate": 1711516124657
+                        },
+                        {
+                            "position": 10,
+                            "name": "Neon",
+                            "weight": 20.1797,
+                            "symbol": "Ne",
+                            "atomdate": 1711516124657
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
