@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "$id": "NewAppSchematic",
+    "title": "ng new options schema",
+    "type": "object",
+    "description": "Create a base app and configure its endpoints.",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "The name of the app.",
+            "x-prompt": "Name:",
+            "$default": {
+                "$source": "argv",
+                "index": 0
+            }
+        }
+    }
+}

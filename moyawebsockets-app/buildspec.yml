@@ -1,0 +1,18 @@
+version: 0.2
+env:
+  variables:
+    APP_NAME: "mo-ya-web"
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16.x
+    commands:
+      - npm install && npm install -g @angular/cli
+      - aws s3 cp s3://moyawebsocket-dev-configs/environment.ts src/environments/environment.ts
+  build:
+    commands:
+      - ng build --configuration=development
+  post_build:
+    commands:
+      - cd dist/$APP_NAME
+      - aws s3 sync . s3://moyawebsocket-dev-app --delete

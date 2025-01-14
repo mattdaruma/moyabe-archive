@@ -1,0 +1,4 @@
+<mat-toolbar color="primary">
+    <span style="cursor: pointer" [routerLink]="['blog']">{{(mybs.Blog | async)?.name}}</span>
+</mat-toolbar>
+<router-outlet></router-outlet>

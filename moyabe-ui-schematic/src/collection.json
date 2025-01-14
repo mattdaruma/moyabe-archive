@@ -1,0 +1,11 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "moyabe-ui": { 
+      "description": "A blank schematic.",
+      "factory": "./moyabe-ui/index#moyabeUi",
+      "schema": "./schema.json"
+    }
+  }
+}
+ 

@@ -1,0 +1,7 @@
+<h1>{{(mybs.Blog | async)?.title}}</h1>
+<p>{{(mybs.Blog | async)?.description}}</p>
+<h5>Posts</h5>
+<div *ngFor="let postId of (mybs.Blog | async)?.posts | keys">
+    {{(mybs.Blog | async)?.posts![postId].title}}
+    <button mat-button color="primary" [routerLink]="['..', 'post', postId]">Go To Post</button>
+</div>

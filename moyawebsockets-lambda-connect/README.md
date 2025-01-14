@@ -1,0 +1,1 @@
+Register connections to websocket gateway.
